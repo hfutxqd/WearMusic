@@ -67,7 +67,9 @@ public class HeadSetReceiver extends BroadcastReceiver {
             try {
                 mHandler.sendEmptyMessage(0);
             } catch (Exception e) {
-                // TODO: handle exception
+                if (Config.isDebug) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -81,7 +83,6 @@ public class HeadSetReceiver extends BroadcastReceiver {
 
         @Override
         public void handleMessage(Message msg) {
-            // TODO Auto-generated method stub
             super.handleMessage(msg);
             headSetListener.onClick();
             isTimerStart = false;

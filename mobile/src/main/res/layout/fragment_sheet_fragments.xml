@@ -1,4 +1,3 @@
-<!DOCTYPE FrameLayout [<!ELEMENT FrameLayout (android.support.v7.widget.RecyclerView)*><!ATTLIST FrameLayoutxmlns:android CDATA #REQUIREDxmlns:tools CDATA #REQUIREDandroid:layout_width CDATA #REQUIREDandroid:layout_height CDATA #REQUIREDtools:context CDATA #REQUIRED><!ELEMENT android.support.v7.widget.RecyclerView (#PCDATA)><!ATTLIST android.support.v7.widget.RecyclerViewandroid:id CDATA #REQUIREDandroid:layout_width CDATA #REQUIREDandroid:layout_height CDATA #REQUIRED>]>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
