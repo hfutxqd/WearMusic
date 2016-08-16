@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.models;
+package xyz.imxqd.wearmusic.models.db;
 
 import com.orm.SugarRecord;
 

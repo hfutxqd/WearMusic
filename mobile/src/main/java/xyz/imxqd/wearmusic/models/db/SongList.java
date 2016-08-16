@@ -1,4 +1,6 @@
-package xyz.imxqd.wearmusic.models;
+package xyz.imxqd.wearmusic.models.db;
+
+import android.net.Uri;
 
 import com.orm.SugarRecord;
 
@@ -6,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.imxqd.wearmusic.R;
+import xyz.imxqd.wearmusic.models.MusicInfo;
 import xyz.imxqd.wearmusic.utils.App;
 
 
@@ -15,8 +18,9 @@ import xyz.imxqd.wearmusic.utils.App;
  */
 public class SongList extends SugarRecord{
 
-    String name;
-    int musicCount;
+    String name; // 歌单名
+    int musicCount; // 歌单里的歌曲数
+    Uri cover; // 歌单封面
 
     public static void init() {
         if (SongList.findById(SongList.class, 1L) == null) {
@@ -55,6 +59,49 @@ public class SongList extends SugarRecord{
         }
 
         return list;
+    }
+
+    /**
+     * 在该歌单中新增歌曲，歌曲添加在歌单末尾
+     * @param item 歌曲信息
+     */
+    public void add(MusicInfo item) {
+        // TODO: 2016/8/16
+    }
+
+    /**
+     * 交换两个歌曲在歌单中的位置
+     * @param pos1 歌曲1的位置
+     * @param pos2 歌曲2的位置
+     */
+    public void exchange(int pos1, int pos2) {
+        // TODO: 2016/8/16
+    }
+
+    /**
+     * 重新设置歌单的歌曲内容
+     * @param list 歌曲列表，有顺序
+     */
+    public void setMusicList(List<MusicInfo> list) {
+        // TODO: 2016/8/16
+    }
+
+    /**
+     * 删除歌单，会级联删除SongListItem，但不会删除MusicInfo
+     * @return 是否成功
+     */
+    @Override
+    public boolean delete() {
+        // TODO: 2016/8/16 删除SongListItem
+        return super.delete();
+    }
+
+    public Uri getCover() {
+        return cover;
+    }
+
+    public void setCover(Uri cover) {
+        this.cover = cover;
     }
 
     public String getName() {

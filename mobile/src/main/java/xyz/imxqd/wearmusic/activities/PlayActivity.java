@@ -92,14 +92,14 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
     protected void onStart() {
         super.onStart();
         Intent intent = new Intent(App.getApp(), PlayService.class);
-        if(!isConnected) {
+        if (!isConnected) {
             bindService(intent, connection, BIND_AUTO_CREATE);
         }
     }
 
     @Override
     protected void onStop() {
-        if(isConnected) {
+        if (isConnected) {
             unbindService(connection);
             isConnected = false;
         }
@@ -172,14 +172,14 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_love) {
             item.setIcon(R.drawable.ic_favorite_red_400_24dp);
-        } else if(item.getItemId() == android.R.id.home) {
+        } else if (item.getItemId() == android.R.id.home) {
             finish();
         }
         return true;
     }
 
     private void setMusicProgress(final int progress) {
-        if(playBinder.isPlaying()) {
+        if (playBinder.isPlaying()) {
             mSeekBar.setProgress(progress);
         }
         runOnUiThread(new Runnable() {

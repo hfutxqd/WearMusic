@@ -5,8 +5,7 @@ import android.app.Application;
 import com.orm.SugarContext;
 
 import xyz.imxqd.wearmusic.helpers.CrashHandler;
-import xyz.imxqd.wearmusic.helpers.MediaScanerHelper;
-import xyz.imxqd.wearmusic.models.SongList;
+import xyz.imxqd.wearmusic.models.db.SongList;
 
 /**
  * Created by imxqd on 2016/8/9.

@@ -1,20 +1,13 @@
 package xyz.imxqd.wearmusic.services;
 
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
-import android.os.BatteryManager;
 import android.os.Environment;
 import android.os.StatFs;
-import android.renderscript.Byte4;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.bumptech.glide.load.data.ByteArrayFetcher;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.mobvoi.android.common.ConnectionResult;
 import com.mobvoi.android.common.api.MobvoiApiClient;
 import com.mobvoi.android.common.data.FreezableUtils;
@@ -28,34 +21,16 @@ import com.mobvoi.android.wearable.WearableListenerService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import xyz.imxqd.wearmusic.utils.ObjectSerializeUtils;
+import static xyz.imxqd.wearmusic.utils.Constants.WatchCMD.*;
 
 
 public class DataService extends WearableListenerService {
     private static final String TAG = "DataService";
-
-    private static final String START_SYNC_PATH             = "/sync-start";
-    private static final String END_SYNC_PATH               = "/sync-end";
-    private static final String GET_MEDIA_EXIST_INFO_PATH   = "/get-media-exist-info";
-    private static final String GET_MEDIA_PATH              = "/get-media";
-    private static final String GET_STORAGE_INFO_PATH       = "/get-storage-info";
-    private static final String GET_FILE_LIST_PATH          = "/get-file-list";
-    private static final String GET_SDCARD_PATH             = "/get-sdcard-path";
-    private static final String DELETE_MEDIA_PATH           = "/delete-media";
-    private static final String CTRL_STOP_PATH              = "/ctrl-stop";
-    private static final String POST_MEDIA_PATH             = "/post-media";
-    private static final String REQUEST_SCAN_MEDIA_PATH     = "/request-scan-media";
 
     private MobvoiApiClient mMobvoiApiClient;
 

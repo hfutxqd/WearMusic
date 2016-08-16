@@ -72,14 +72,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Intent intent = new Intent(App.getApp(), PlayService.class);
-        if(!isConnected) {
+        if (!isConnected) {
             bindService(intent, connection, BIND_AUTO_CREATE);
         }
     }
 
     @Override
     protected void onStop() {
-        if(isConnected) {
+        if (isConnected) {
             unbindService(connection);
             isConnected = false;
         }

@@ -337,7 +337,9 @@ public class MainActivity extends Activity implements DataApi.DataListener,
         }
     }
 
-    /** Sends an RPC to start a fullscreen Activity on the wearable. */
+    /**
+     * Sends an RPC to start a fullscreen Activity on the wearable.
+     */
     public void onStartWearableActivityClick(View view) {
         LOGD(TAG, "Generating RPC");
 
@@ -346,7 +348,9 @@ public class MainActivity extends Activity implements DataApi.DataListener,
         new StartWearableActivityTask().execute();
     }
 
-    /** Generates a DataItem based on an incrementing count. */
+    /**
+     * Generates a DataItem based on an incrementing count.
+     */
     private class DataItemGenerator implements Runnable {
 
         private int count = 0;

@@ -2,18 +2,12 @@ package xyz.imxqd.wearmusic.activities;
 
 import android.animation.ObjectAnimator;
 import android.content.IntentSender;
-import android.os.BatteryManager;
 import android.os.Bundle;
-import android.support.annotation.StringDef;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
 import com.dinuscxj.progressbar.CircleProgressBar;
@@ -37,33 +31,19 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 import xyz.imxqd.wearmusic.R;
-import xyz.imxqd.wearmusic.utils.ObjectSerializeUtils;
 import xyz.imxqd.wearmusic.utils.StorageUtils;
+
+import static xyz.imxqd.wearmusic.utils.Constants.WatchCMD.*;
 
 public class WatchActivity extends AppCompatActivity implements MobvoiApiClient.ConnectionCallbacks,
         MobvoiApiClient.OnConnectionFailedListener, DataApi.DataListener,
         MessageApi.MessageListener, NodeApi.NodeListener {
 
     private static final String TAG = "WatchActivity";
-
-    private static final String START_SYNC_PATH             = "/sync-start";
-    private static final String END_SYNC_PATH               = "/sync-end";
-    private static final String GET_MEDIA_EXIST_INFO_PATH   = "/get-media-exist-info";
-    private static final String GET_MEDIA_PATH              = "/get-media";
-    private static final String GET_STORAGE_INFO_PATH       = "/get-storage-info";
-    private static final String GET_FILE_LIST_PATH          = "/get-file-list";
-    private static final String GET_SDCARD_PATH             = "/get-sdcard-path";
-    private static final String DELETE_MEDIA_PATH           = "/delete-media";
-    private static final String CTRL_STOP_PATH              = "/ctrl-stop";
-    private static final String POST_MEDIA_PATH             = "/post-media";
-    private static final String REQUEST_SCAN_MEDIA_PATH     = "/request-scan-media";
 
     private MobvoiApiClient mMobvoiApiClient;
     private boolean mResolvingError = false;

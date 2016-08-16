@@ -158,7 +158,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     private void initPlayUi() {
-        if(playBinder.getCurrentMusicInfo() != null) {
+        if (playBinder.getCurrentMusicInfo() != null) {
             mCurrentMusic = playBinder.getCurrentMusicInfo();
             Glide.with(this)
                     .loadFromMediaStore(mCurrentMusic.getAlbumIconUri())
@@ -216,14 +216,14 @@ public class NavigationActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
         Intent intent = new Intent(App.getApp(), PlayService.class);
-        if(!isConnected) {
+        if (!isConnected) {
             bindService(intent, connection, BIND_AUTO_CREATE);
         }
     }
 
     @Override
     protected void onStop() {
-        if(isConnected) {
+        if (isConnected) {
             unbindService(connection);
             isConnected = false;
         }
@@ -262,18 +262,16 @@ public class NavigationActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         switch (id) {
-            case R.id.nav_settings:
-            {
+            case R.id.nav_settings: {
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
             }
-                break;
-            case R.id.nav_watch:
-            {
+            break;
+            case R.id.nav_watch: {
                 Intent intent = new Intent(this, WatchActivity.class);
                 startActivity(intent);
             }
-                break;
+            break;
             case R.id.nav_all:
             case R.id.nav_list:
             case R.id.nav_queue:
@@ -288,7 +286,7 @@ public class NavigationActivity extends AppCompatActivity
 
     @Override
     public void onSongChange(MusicInfo info) {
-        if(!isConnected) {
+        if (!isConnected) {
             return;
         }
         initPlayUi();
@@ -297,7 +295,7 @@ public class NavigationActivity extends AppCompatActivity
 
     @Override
     public void onSongChanged(MusicInfo info) {
-        if(!isConnected) {
+        if (!isConnected) {
             return;
         }
         if (playBinder.isPlaying()) {
