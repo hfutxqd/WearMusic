@@ -12,11 +12,15 @@ import xyz.imxqd.wearmusic.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SheetFragments extends Fragment {
+public class SheetFragment extends Fragment {
 
 
-    public SheetFragments() {
+    public SheetFragment() {
         // Required empty public constructor
+    }
+
+    public static SheetFragment newInstance() {
+        return new SheetFragment();
     }
 
 

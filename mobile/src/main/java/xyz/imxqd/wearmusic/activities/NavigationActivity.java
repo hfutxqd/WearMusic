@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,11 +23,15 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import xyz.imxqd.wearmusic.R;
 import xyz.imxqd.wearmusic.fragments.AllMusicFragment;
+import xyz.imxqd.wearmusic.fragments.QueueFragment;
+import xyz.imxqd.wearmusic.fragments.SheetFragment;
 import xyz.imxqd.wearmusic.models.MusicInfo;
 import xyz.imxqd.wearmusic.services.PlayService;
 import xyz.imxqd.wearmusic.utils.App;
@@ -56,6 +61,9 @@ public class NavigationActivity extends AppCompatActivity
     private PlayService.PlayBinder playBinder = null;
     private MusicInfo mCurrentMusic;
     private Timer mProgressUpdater = new Timer(true);
+
+    private HashMap<Integer, Fragment> mFragmentList;
+    private int mCurrentFragmentId;
 
     private ServiceConnection connection = new ServiceConnection() {
         @Override
@@ -89,6 +97,7 @@ public class NavigationActivity extends AppCompatActivity
         setContentView(R.layout.activity_navigation);
         findViews();
         initView();
+        initFragments();
         setupEvents();
         initService();
     }
@@ -124,9 +133,28 @@ public class NavigationActivity extends AppCompatActivity
                 this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
+    }
+
+    private void initFragments() {
+        mFragmentList = new HashMap<>(3);
+        mFragmentList.put(R.id.nav_all, AllMusicFragment.newInstance(MusicListUtils.getMusicList()));
+        mFragmentList.put(R.id.nav_list, SheetFragment.newInstance());
+        mFragmentList.put(R.id.nav_queue, QueueFragment.newInstance());
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, AllMusicFragment.newInstance(MusicListUtils.getMusicList()))
+                .replace(R.id.container, mFragmentList.get(R.id.nav_all))
                 .commit();
+        mCurrentFragmentId = R.id.nav_all;
+    }
+
+    private void switchFragmentTo(int id) {
+        Fragment to = mFragmentList.get(id);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, to)
+                .commit();
+        mCurrentFragmentId = id;
     }
 
     private void initPlayUi() {
@@ -246,6 +274,12 @@ public class NavigationActivity extends AppCompatActivity
                 startActivity(intent);
             }
                 break;
+            case R.id.nav_all:
+            case R.id.nav_list:
+            case R.id.nav_queue:
+                switchFragmentTo(id);
+                break;
+            default:
         }
 
         mDrawer.closeDrawer(GravityCompat.START);
