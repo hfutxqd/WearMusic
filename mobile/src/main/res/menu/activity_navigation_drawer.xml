@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:checked="true"
+            android:id="@+id/nav_all"
+            android:icon="@drawable/ic_library_music_black_24dp"
+            android:title="@string/nav_all" />
+        <item
+            android:id="@+id/nav_list"
+            android:icon="@drawable/ic_queue_music_black_24dp"
+            android:title="@string/nav_list" />
+        <item
+            android:id="@+id/nav_queue"
+            android:icon="@drawable/ic_playlist_play_black_24dp"
+            android:title="@string/nav_queue" />
+    </group>
+
+    <group
+        android:id="@+id/nav_ctrl">
+        <item
+            android:id="@+id/nav_watch"
+            android:icon="@drawable/ic_watch_black_24dp"
+            android:title="@string/nav_watch" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/nav_settings"/>
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/nav_share" />
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/nav_feedback" />
+    </group>
+
+</menu>

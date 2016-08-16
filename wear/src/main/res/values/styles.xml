@@ -1,0 +1,6 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.Ticwear">
+        <item name="android:colorAccent">@color/card_grey_text_color</item>
+    </style>
+</resources>

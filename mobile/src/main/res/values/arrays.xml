@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_filter_duration_titles">
+        <item>30秒以下</item>
+        <item>1分钟以下</item>
+        <item>1分30秒钟以下</item>
+        <item>2分钟以下</item>
+        <item>10分钟以上</item>
+        <item>20分钟以上</item>
+        <item>30分钟以上</item>
+        <item>不过滤</item>
+    </string-array>
+    <string-array name="pref_filter_duration_values">
+        <item>B30</item>
+        <item>B60</item>
+        <item>B90</item>
+        <item>B120</item>
+        <item>A600</item>
+        <item>A1200</item>
+        <item>A1800</item>
+        <item>N</item>
+    </string-array>
+
+    <string-array name="pref_filter_type_titles">
+        <item>音乐</item>
+        <item>铃声</item>
+        <item>闹铃</item>
+        <item>通知声</item>
+        <item>博客</item>
+    </string-array>
+    <string-array name="pref_filter_type_values">
+        <item>music</item>
+        <item>ringtone</item>
+        <item>alarm</item>
+        <item>notification</item>
+        <item>podcast</item>
+    </string-array>
+    <string-array name="pref_timed_exit_titles" >
+        <item>15分钟过后</item>
+        <item>30分钟过后</item>
+        <item>1小时30分钟过后</item>
+        <item>2小时过后</item>
+        <item>3小时过后</item>
+        <item>不关闭</item>
+    </string-array>
+    <string-array name="pref_timed_exit_values" >
+        <item>15</item>
+        <item>30</item>
+        <item>90</item>
+        <item>120</item>
+        <item>180</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="extra_email">
+        <item>ahtlxqd@gmail.com</item>
+    </string-array>
+</resources>

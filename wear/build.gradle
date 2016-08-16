@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        applicationId "xyz.imxqd.wearmusic"
+        minSdkVersion 21
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.ticwear:ticdesign:1.0.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.github.satyan:sugar:1.5'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.google.android.support:wearable:2.0.0-alpha2'
+}

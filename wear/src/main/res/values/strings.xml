@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">WearMusic</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="music_title">我们的恋爱是对生命的严重浪费</string>
+    <string name="current_time">%1$s/%2$s</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="current_steps">%1$d步</string>
+    <string name="dialog_title_delete">确认删除</string>
+    <string name="delete_message">确认删除 %1$s 这首歌曲？</string>
+    <string name="volume">音量:%1$d/%2$d</string>
+</resources>

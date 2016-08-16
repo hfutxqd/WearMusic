@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">WearMusic</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_watch">我的手表</string>
+    <string name="watch_connected">手表已连接</string>
+    <string name="watch_not_connected">手表未连接</string>
+    <string name="watch_storage">总共%1$s\n剩余%2$s</string>
+    <string name="pref_description_filter_switch">是否开启音乐过滤</string>
+    <string name="pref_title_filter_switch">音乐过滤</string>
+    <string name="pref_title_filter_duration">过滤时长</string>
+    <string name="pref_default_filter_duration">90</string>
+    <string name="pref_category_music_filter">音乐过滤</string>
+    <string name="pref_message_filter_type">你选择的类型将不被过滤</string>
+    <string name="pref_title_filter_type">过滤类型</string>
+    <string name="title_activity_settings">设置</string>
+    <string name="pref_button_positive">确认</string>
+    <string name="pref_button_negative">取消</string>
+    <string name="title_activity_navigation">全部音乐</string>
+    <string name="nav_all">全部音乐</string>
+    <string name="nav_list">我的歌单</string>
+    <string name="nav_watch">我的手表</string>
+    <string name="nav_share">分享</string>
+    <string name="nav_feedback">反馈</string>
+    <string name="nav_settings">设置</string>
+    <string name="action_search">搜索</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_queue">播放队列</string>
+    <string name="title_activity_play">正在播放</string>
+    <string name="action_love">喜爱</string>
+    <string name="action_add_to">添加到歌单</string>
+    <string name="action_delete">删除该歌曲</string>
+    <string name="pref_category_music_func">功能设置</string>
+    <string name="pref_title_drive_by_wire">线控开关</string>
+    <string name="pref_summary_drive_by_wire">单击暂停，双击切换下一曲</string>
+    <string name="pref_title_timed_exit">定时关闭</string>
+    <string name="action_add_to_watch">添加到手表</string>
+    <string name="name_song_list_favorites">我的最爱</string>
+    <string name="name_song_list_watch">我的手表</string>
+    <string name="pref_category_about">关于信息</string>
+    <string name="pref_title_author">作者</string>
+    <string name="pref_summary_author">IMXQD</string>
+    <string name="pref_title_appname">软件名称</string>
+    <string name="pref_title_appversion">软件版本</string>
+    <string name="app_version">1.0.0</string>
+    <string name="pref_title_email">电子邮件</string>
+    <string name="pref_summary_email">ahtlxqd@gmail.com</string>
+
+    <string name="extra_subject">对"腕上音乐"的建议</string>
+    <string name="extra_text">版本号：1.0.0</string>
+    <string name="file_not_found">文件不存在</string>
+    <string name="watch_file_management">文件管理</string>
+    <string name="watch_music_management">音乐管理</string>
+    <string name="watch_settings">手表设置</string>
+</resources>

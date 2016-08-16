@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.wearable.view.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/piano_player"
+    tools:context=".activities.MainActivity"
+    tools:deviceIds="wear">
+
+    <TextView
+        android:id="@+id/music_title"
+        android:layout_alignParentTop="true"
+        android:padding="8dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/music_title"
+        android:textColor="@color/black"
+        app:layout_box="all"/>
+    <RelativeLayout
+        android:id="@+id/display_on"
+        app:layout_box="all"
+        android:visibility="visible"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.wearable.view.CircularButton
+            android:id="@+id/bt_pre"
+            android:onClick="onPreviousClick"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/ic_skip_previous_black_24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:buttonRippleColor="@color/colorAccent" />
+        <android.support.wearable.view.CircularButton
+            android:id="@+id/bt_play"
+            android:onClick="onPlayClick"
+            android:color="@color/colorPrimary"
+            android:src="@drawable/ic_play_arrow_black_36dp"
+            android:layout_centerInParent="true"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            app:buttonRippleColor="@color/colorAccent" />
+
+        <android.support.wearable.view.CircularButton
+            android:id="@+id/bt_next"
+            android:onClick="onNextClick"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/ic_skip_next_black_24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_alignRight="@id/bt_play"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:buttonRippleColor="@color/colorAccent" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/display_off"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_box="all">
+        <TextView
+            android:id="@+id/current_system_time"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/current_system_steps"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/current_time"
+        android:layout_gravity="bottom"
+        android:padding="16dp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/current_time"
+        android:textSize="18sp"/>
+    <xyz.imxqd.wearmusic.widgets.CircularSeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:maxHeight="1dp"
+        android:progress="30"
+        app:circle_stroke_color="#000000"
+        app:circle_stroke_width="1"
+        app:pointer_color="@color/colorAccentDark"
+        app:pointer_halo_color="@color/colorAccentDark"
+        app:start_angle="135"
+        app:end_angle="45"
+        app:circle_progress_color="@color/colorAccent"
+        app:pointer_halo_border_width="1.5"
+        app:pointer_halo_width="0.5" />
+</android.support.wearable.view.BoxInsetLayout>

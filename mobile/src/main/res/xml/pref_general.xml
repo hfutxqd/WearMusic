@@ -1,0 +1,54 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/pref_category_music_filter">
+        <ListPreference
+            android:defaultValue="B90"
+            android:entries="@array/pref_filter_duration_titles"
+            android:entryValues="@array/pref_filter_duration_values"
+            android:key="filter_duration"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_filter_duration" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_category_music_func">
+        <SwitchPreference
+            android:title="@string/pref_title_drive_by_wire"
+            android:defaultValue="true"
+            android:key="drive_by_wire"
+            android:summary="@string/pref_summary_drive_by_wire"
+            />
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pref_timed_exit_titles"
+            android:entryValues="@array/pref_timed_exit_values"
+            android:key="timed_exit"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_timed_exit" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_category_about">
+        <PreferenceScreen
+            android:title="@string/pref_title_appname"
+            android:summary="@string/app_name"
+            />
+
+        <PreferenceScreen
+            android:title="@string/pref_title_appversion"
+            android:summary="@string/app_version" />
+
+        <PreferenceScreen
+            android:title="@string/pref_title_author"
+            android:summary="@string/pref_summary_author" />
+
+        <PreferenceScreen
+            android:title="@string/pref_title_email"
+            android:summary="@string/pref_summary_email" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
