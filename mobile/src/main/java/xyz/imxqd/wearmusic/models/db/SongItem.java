@@ -6,7 +6,7 @@ import com.orm.SugarRecord;
  * Created by imxqd on 2016/8/13.
  * 歌单中歌曲列表的数据存储模型类
  */
-public class SongListItem extends SugarRecord{
+public class SongItem extends SugarRecord{
     long listId; // 歌单在数据库中的Id
     long musicId; // 歌曲在数据库中的Id
     int position;// 歌曲中歌单中的位置

@@ -3,6 +3,7 @@ package xyz.imxqd.wearmusic.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,29 +17,23 @@ import xyz.imxqd.wearmusic.R;
  */
 public class QueueFragment extends Fragment {
 
+    private View mRoot;
+    private RecyclerView mQueueList;
 
     public QueueFragment() {
         // Required empty public constructor
     }
 
     public static QueueFragment newInstance() {
-        QueueFragment fragment = new QueueFragment();
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
+        return new QueueFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_queue, container, false);
+        mRoot = inflater.inflate(R.layout.fragment_queue, container, false);
+        mQueueList = (RecyclerView) mRoot.findViewById(R.id.queue_list);
+        return mRoot;
     }
 
 }

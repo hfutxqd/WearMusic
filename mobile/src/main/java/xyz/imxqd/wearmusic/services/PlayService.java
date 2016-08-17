@@ -13,9 +13,6 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,6 +23,8 @@ import xyz.imxqd.wearmusic.helpers.MediaScanerHelper;
 import xyz.imxqd.wearmusic.helpers.PreferenceHelper;
 import xyz.imxqd.wearmusic.models.MusicInfo;
 import xyz.imxqd.wearmusic.utils.Config;
+
+import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.*;
 
 public class PlayService extends Service implements MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, MediaPlayer.OnPreparedListener, HeadSetHelper.OnHeadSetListener {
     private static final String TAG = "PlayService";
@@ -39,9 +38,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
     public static final String PLAY_ACTION_PAUSE= "PlayService.pause"; // 暂停
     public static final String PLAY_ACTION_NEXT= "PlayService.next"; // 下一曲
 
-    public static final int PLAY_MODE_REPEAT_LIST = 1; // 列表循环
-    public static final int PLAY_MODE_REPEAT_RAND = 2; // 列表随机
-    public static final int PLAY_MODE_REPEAT_1 = 3; // 单曲循环
+
 
     private MediaPlayer player;
     private PlayBinder binder;
@@ -94,7 +91,9 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
             }
             Log.d(TAG, "mMusicInfoList size is " + mMusicInfoList.size());
             if (isFirstStart) {
-                binder.load(mIdList.get(0));
+                if (mIdList.size() > 0) {
+                    binder.load(mIdList.get(0));
+                }
             }
             isFirstStart = false;
         } else {
@@ -159,7 +158,6 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         MusicInfo info = binder.getCurrentMusicInfo();
         mRemoteViews.setTextViewText(R.id.music_artist, info.getArtist());
         mRemoteViews.setTextViewText(R.id.music_title, info.getTitle());
-        mRemoteViews.setTextViewText(R.id.music_album, info.getAlbumName());
         Bitmap icon = info.getAlbumIcon();
         if(icon != null) {
             mRemoteViews.setImageViewBitmap(R.id.music_icon, info.getAlbumIcon());

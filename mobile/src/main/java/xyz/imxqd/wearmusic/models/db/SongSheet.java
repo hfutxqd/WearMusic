@@ -16,23 +16,23 @@ import xyz.imxqd.wearmusic.utils.App;
  * Created by imxqd on 2016/8/13.
  * 歌单的数据库模型类
  */
-public class SongList extends SugarRecord{
+public class SongSheet extends SugarRecord{
 
     String name; // 歌单名
     int musicCount; // 歌单里的歌曲数
     Uri cover; // 歌单封面
 
     public static void init() {
-        if (SongList.findById(SongList.class, 1L) == null) {
-            SongList list = new SongList();
+        if (SongSheet.findById(SongSheet.class, 1L) == null) {
+            SongSheet list = new SongSheet();
             list.setId(1L);
             list.name = App.getApp().getString(R.string.name_song_list_favorites);
             list.musicCount = 0;
             list.save();
         }
 
-        if (SongList.findById(SongList.class, 2L) == null) {
-            SongList list2 = new SongList();
+        if (SongSheet.findById(SongSheet.class, 2L) == null) {
+            SongSheet list2 = new SongSheet();
             list2.setId(2L);
             list2.name = App.getApp().getString(R.string.name_song_list_watch);
             list2.musicCount = 0;
@@ -46,11 +46,11 @@ public class SongList extends SugarRecord{
      * @return 该歌单中的歌曲列表
      */
     public List<MusicInfo> getMusicList() {
-        List<SongListItem> listItems =
-                SongListItem.find(SongListItem.class, "listId = ?",
+        List<SongItem> listItems =
+                SongItem.find(SongItem.class, "listId = ?",
                         new String[]{"" + getId()}, null, "position", null);
         ArrayList<MusicInfo> list = new ArrayList<>(listItems.size());
-        for(SongListItem item : listItems) {
+        for(SongItem item : listItems) {
             MusicInfo info =
                     MusicInfo.findById(MusicInfo.class, item.musicId);
             if(info != null) {

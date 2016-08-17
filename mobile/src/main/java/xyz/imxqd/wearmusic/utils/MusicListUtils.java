@@ -25,6 +25,11 @@ public class MusicListUtils {
     public static final String WHERE_BELOW_1200S = "duration < 1200000";
     public static final String WHERE_BELOW_1800S = "duration < 1800000";
 
+    /**
+     * 根据where子句筛选获得音乐信息列表
+     * @param where where子句
+     * @return 音乐信息列表
+     */
     public static ArrayList<MusicInfo> getMusicList(String where) {
         ArrayList<MusicInfo> list = new ArrayList<>();
         ContentResolver cr = App.getApp().getContentResolver();
@@ -69,6 +74,11 @@ public class MusicListUtils {
         return getMusicList(getWhereCase(dur));
     }
 
+    /**
+     * 获取Where子句
+     * @param settingString 设置里保存的时长过滤的value
+     * @return 对应的Where子句
+     */
     public static String getWhereCase(String settingString) {
         String res = WHERE_ABOVE_90S;
         switch (settingString) {

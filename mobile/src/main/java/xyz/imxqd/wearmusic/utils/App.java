@@ -5,7 +5,7 @@ import android.app.Application;
 import com.orm.SugarContext;
 
 import xyz.imxqd.wearmusic.helpers.CrashHandler;
-import xyz.imxqd.wearmusic.models.db.SongList;
+import xyz.imxqd.wearmusic.models.db.SongSheet;
 
 /**
  * Created by imxqd on 2016/8/9.
@@ -19,7 +19,7 @@ public class App extends Application {
         super.onCreate();
         app = this;
         SugarContext.init(this);
-        SongList.init();
+        SongSheet.init();
     }
 
     @Override

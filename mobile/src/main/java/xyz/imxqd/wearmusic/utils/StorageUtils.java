@@ -13,6 +13,11 @@ public class StorageUtils {
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
     }
 
+    /**
+     * 获取指定存储大小的合适文字表达
+     * @param size 字节数
+     * @return 合适的文字表达
+     */
     public static String getString(long size) {
         return String.format("%.2fGB", size * 1.0 / 1024 / 1024 / 1024);
     }

@@ -53,4 +53,5 @@
     <string name="watch_file_management">文件管理</string>
     <string name="watch_music_management">音乐管理</string>
     <string name="watch_settings">手表设置</string>
+    <string name="sheet_name">%1$s(%2$s)</string>
 </resources>
