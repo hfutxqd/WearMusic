@@ -1,8 +1,9 @@
-package xyz.imxqd.wearmusic.activities;
+package xyz.imxqd.wearmusic.ui.activities;
 
 import android.animation.ObjectAnimator;
 import android.content.IntentSender;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -96,7 +97,9 @@ public class WatchActivity extends AppCompatActivity implements MobvoiApiClient.
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                BottomSheetDialog dialog = new BottomSheetDialog(WatchActivity.this);
+                dialog.setContentView(R.layout.nav_header_navigation);
+                dialog.show();
             }
         });
     }

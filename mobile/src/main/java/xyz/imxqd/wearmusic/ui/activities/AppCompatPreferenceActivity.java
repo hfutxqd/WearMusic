@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.activities;
+package xyz.imxqd.wearmusic.ui.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

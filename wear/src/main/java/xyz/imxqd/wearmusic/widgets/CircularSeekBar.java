@@ -16,7 +16,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import xyz.imxqd.wearmusic.R;
-import xyz.imxqd.wearmusic.activities.MainActivity;
 
 public class CircularSeekBar extends View {
 

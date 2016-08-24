@@ -1,13 +1,12 @@
-package xyz.imxqd.wearmusic.activities;
+package xyz.imxqd.wearmusic.ui.activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v4.app.Fragment;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,15 +23,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import xyz.imxqd.wearmusic.R;
-import xyz.imxqd.wearmusic.fragments.AllMusicFragment;
-import xyz.imxqd.wearmusic.fragments.QueueFragment;
-import xyz.imxqd.wearmusic.fragments.SheetFragment;
+import xyz.imxqd.wearmusic.ui.fragments.AllMusicFragment;
+import xyz.imxqd.wearmusic.ui.fragments.QueueFragment;
+import xyz.imxqd.wearmusic.ui.fragments.SheetFragment;
 import xyz.imxqd.wearmusic.models.MusicInfo;
 import xyz.imxqd.wearmusic.services.PlayService;
 import xyz.imxqd.wearmusic.utils.App;

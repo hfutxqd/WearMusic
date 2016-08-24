@@ -1,28 +1,21 @@
-package xyz.imxqd.wearmusic.activities;
+package xyz.imxqd.wearmusic.ui.activities;
 
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.database.Cursor;
-import android.media.MediaDataSource;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import java.io.IOException;
-
-import xyz.imxqd.wearmusic.adapters.ListAdapter;
 import xyz.imxqd.wearmusic.R;
+import xyz.imxqd.wearmusic.ui.adapters.AllListAdapter;
 import xyz.imxqd.wearmusic.services.PlayService;
 import xyz.imxqd.wearmusic.utils.App;
 
@@ -31,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton mFab;
     private RecyclerView mRecyclerView;
-    private ListAdapter mAdapter;
+    private AllListAdapter mAdapter;
 
     private PlayService.PlayBinder playBinder = null;
 
@@ -93,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mAdapter = new ListAdapter(this);
+        mAdapter = new AllListAdapter(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -106,12 +99,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mAdapter.setOnItemClickListener(new ListAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new AllListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(ListAdapter.MusicViewHolder holder) {
+            public void onItemClick(AllListAdapter.MusicViewHolder holder) {
                 int pos = holder.getAdapterPosition();
                 playBinder.load(mAdapter.getItem(pos).getSongId());
                 playBinder.play();
+            }
+
+            @Override
+            public boolean onPopupMenuItemSelected(MenuItem item, AllListAdapter.MusicViewHolder holder) {
+                return true;
             }
         });
     }

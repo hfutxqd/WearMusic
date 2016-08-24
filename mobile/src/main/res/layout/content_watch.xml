@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="xyz.imxqd.wearmusic.activities.WatchActivity"
+    tools:context=".ui.activities.WatchActivity"
     tools:showIn="@layout/activity_watch">
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="#EEE"

@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.activities;
+package xyz.imxqd.wearmusic.ui.activities;
 
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -13,7 +13,7 @@ import android.support.wearable.view.WearableListView;
 
 import ticwear.design.app.AlertDialog;
 import xyz.imxqd.wearmusic.R;
-import xyz.imxqd.wearmusic.adapters.ListAdapter;
+import xyz.imxqd.wearmusic.ui.adapters.ListAdapter;
 import xyz.imxqd.wearmusic.models.MusicInfo;
 import xyz.imxqd.wearmusic.services.DataService;
 import xyz.imxqd.wearmusic.services.PlayService;

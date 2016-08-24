@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.adapters;
+package xyz.imxqd.wearmusic.ui.adapters;
 
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;

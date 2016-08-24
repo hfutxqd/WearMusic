@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.fragments;
+package xyz.imxqd.wearmusic.ui.fragments;
 
 
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import xyz.imxqd.wearmusic.R;
-import xyz.imxqd.wearmusic.adapters.SheetAdapter;
+import xyz.imxqd.wearmusic.ui.adapters.SheetAdapter;
 
 /**
  * A simple {@link Fragment} subclass.

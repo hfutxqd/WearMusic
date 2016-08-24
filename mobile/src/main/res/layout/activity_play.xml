@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/play_bg_color"
     android:fitsSystemWindows="true"
-    tools:context="xyz.imxqd.wearmusic.activities.PlayActivity">
+    tools:context=".ui.activities.PlayActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:background="@null"

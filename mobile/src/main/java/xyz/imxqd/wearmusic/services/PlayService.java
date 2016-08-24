@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import xyz.imxqd.wearmusic.R;
-import xyz.imxqd.wearmusic.activities.PlayActivity;
+import xyz.imxqd.wearmusic.ui.activities.PlayActivity;
 import xyz.imxqd.wearmusic.helpers.HeadSetHelper;
 import xyz.imxqd.wearmusic.helpers.MediaScanerHelper;
 import xyz.imxqd.wearmusic.helpers.PreferenceHelper;

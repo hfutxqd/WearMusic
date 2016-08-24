@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.activities;
+package xyz.imxqd.wearmusic.ui.activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -15,10 +15,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +42,7 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
     private AppCompatSeekBar mSeekBar;
     private TextView mCurrentTime;
     private TextView mTotalTime;
-    private LinearLayout mPlayRoot;
+    private ViewGroup mPlayRoot;
 
     private PlayService.PlayBinder playBinder = null;
     private MusicInfo mCurrentMusic;
@@ -130,7 +130,7 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
         mSeekBar = (AppCompatSeekBar) findViewById(R.id.play_music_seek_bar);
         mCurrentTime = (TextView) findViewById(R.id.play_music_current_time);
         mTotalTime = (TextView) findViewById(R.id.play_music_total_time);
-        mPlayRoot = (LinearLayout) findViewById(R.id.play_root);
+        mPlayRoot = (ViewGroup) findViewById(R.id.play_root);
     }
 
     private void setupEvents() {

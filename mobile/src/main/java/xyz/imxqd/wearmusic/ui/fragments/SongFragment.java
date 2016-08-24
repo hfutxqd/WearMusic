@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.fragments;
+package xyz.imxqd.wearmusic.ui.fragments;
 
 
 import android.os.Bundle;

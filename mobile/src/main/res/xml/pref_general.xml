@@ -14,7 +14,7 @@
 
     <PreferenceCategory
         android:title="@string/pref_category_music_func">
-        <SwitchPreference
+        <CheckBoxPreference
             android:title="@string/pref_title_drive_by_wire"
             android:defaultValue="true"
             android:key="drive_by_wire"

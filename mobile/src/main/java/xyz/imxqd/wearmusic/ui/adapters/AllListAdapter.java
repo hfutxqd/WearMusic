@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.adapters;
+package xyz.imxqd.wearmusic.ui.adapters;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -26,19 +26,19 @@ import xyz.imxqd.wearmusic.utils.TimeUtils;
  * Created by imxqd on 2016/8/7.
  * 音乐列表的适配器
  */
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MusicViewHolder> {
+public class AllListAdapter extends RecyclerView.Adapter<AllListAdapter.MusicViewHolder> {
     private Context mContext;
     private ArrayList<MusicInfo> mList;
     private OnItemClickListener mListener = null;
 
-    public ListAdapter(Context context) {
+    public AllListAdapter(Context context) {
         super();
         mContext = context;
         mList = new ArrayList<>();
         updateData();
     }
 
-    public ListAdapter(Context context, ArrayList<MusicInfo> list) {
+    public AllListAdapter(Context context, ArrayList<MusicInfo> list) {
         mContext = context;
         mList = list;
     }
@@ -124,7 +124,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MusicViewHolde
                 menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        return true;
+                        if (mListener != null) {
+                            return mListener.onPopupMenuItemSelected(item, holder);
+                        } else {
+                            return false;
+                        }
                     }
                 });
                 menu.show();
@@ -145,6 +149,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MusicViewHolde
 
     public interface OnItemClickListener {
         void onItemClick(MusicViewHolder holder);
+        boolean onPopupMenuItemSelected(MenuItem item, MusicViewHolder holder);
     }
     public class MusicViewHolder extends RecyclerView.ViewHolder {
         ImageView icon, menu;

@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.adapters;
+package xyz.imxqd.wearmusic.ui.adapters;
 
 import android.content.ContentResolver;
 import android.content.Context;

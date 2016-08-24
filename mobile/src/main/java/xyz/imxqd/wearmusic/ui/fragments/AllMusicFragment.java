@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.fragments;
+package xyz.imxqd.wearmusic.ui.fragments;
 
 
 import android.content.Context;
@@ -7,13 +7,14 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
 import xyz.imxqd.wearmusic.R;
-import xyz.imxqd.wearmusic.adapters.ListAdapter;
+import xyz.imxqd.wearmusic.ui.adapters.AllListAdapter;
 import xyz.imxqd.wearmusic.models.MusicInfo;
 
 
@@ -27,7 +28,7 @@ public class AllMusicFragment extends Fragment {
 
     private View mRoot;
     private RecyclerView mRecyclerView;
-    private ListAdapter mAdapter;
+    private AllListAdapter mAdapter;
     private ArrayList<MusicInfo> mMusicList;
     private OnAllMusicFragmentListener listener = null;
 
@@ -55,7 +56,7 @@ public class AllMusicFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMusicList = getArguments().getParcelableArrayList(PARAM_MUSIC_LIST);
-        mAdapter = new ListAdapter(getContext(), mMusicList);
+        mAdapter = new AllListAdapter(getContext(), mMusicList);
     }
 
     @Override
@@ -84,11 +85,27 @@ public class AllMusicFragment extends Fragment {
     }
 
     private void setupEvents() {
-        mAdapter.setOnItemClickListener(new ListAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new AllListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(ListAdapter.MusicViewHolder holder) {
+            public void onItemClick(AllListAdapter.MusicViewHolder holder) {
                 int pos = holder.getAdapterPosition();
                 listener.onAllMusicFragmentItemClick(mAdapter.getItem(pos));
+            }
+
+            @Override
+            public boolean onPopupMenuItemSelected(MenuItem item, AllListAdapter.MusicViewHolder holder) {
+                switch (item.getItemId()) {
+                    case R.id.popup_add_to:
+                        break;
+                    case R.id.popup_add_to_watch:
+                        break;
+                    case R.id.popup_love:
+                        break;
+                    case R.id.popup_delete:
+                        break;
+                    default:
+                }
+                return true;
             }
         });
     }

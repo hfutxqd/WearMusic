@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xyz.imxqd.wearmusic.fragments.QueueFragment">
+    tools:context=".ui.fragments.QueueFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/queue_list"

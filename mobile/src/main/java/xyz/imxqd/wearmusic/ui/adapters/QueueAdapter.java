@@ -1,4 +1,4 @@
-package xyz.imxqd.wearmusic.adapters;
+package xyz.imxqd.wearmusic.ui.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Queue;
 
 import xyz.imxqd.wearmusic.R;
 import xyz.imxqd.wearmusic.models.MusicInfo;

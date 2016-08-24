@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context="xyz.imxqd.wearmusic.activities.ListActivity"
+    tools:context=".ui.activities.ListActivity"
     tools:deviceIds="wear">
 
     <android.support.wearable.view.WearableListView
