@@ -12,7 +12,9 @@ import android.os.Message;
 import android.view.KeyEvent;
 
 import xyz.imxqd.wearmusic.helpers.HeadSetHelper;
+import xyz.imxqd.wearmusic.services.PlayService;
 import xyz.imxqd.wearmusic.utils.Config;
+import xyz.imxqd.wearmusic.utils.Constants;
 
 public class HeadSetReceiver extends BroadcastReceiver {
 
@@ -29,8 +31,8 @@ public class HeadSetReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String intentAction = intent.getAction();
-        if (Intent.ACTION_MEDIA_BUTTON.equals(intentAction)) {
+        String action = intent.getAction();
+        if (Intent.ACTION_MEDIA_BUTTON.equals(action)) {
             //获得KeyEvent对象
             KeyEvent keyEvent = intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
             if (headSetListener != null) {
@@ -53,8 +55,7 @@ public class HeadSetReceiver extends BroadcastReceiver {
                 }
             }
         }
-        //终止广播(不让别的程序收到此广播，免受干扰)
-//        abortBroadcast();
+
     }
 
     /*

@@ -213,6 +213,19 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         binder.next();
     }
 
+    @Override
+    public void onHeadSetPullOut() {
+        if (!PreferenceHelper.getAutoPauseEnable()) {
+            return;
+        }
+        binder.pause();
+    }
+
+    @Override
+    public void onHeadSetPushIn() {
+
+    }
+
     public class PlayBinder extends Binder {
         private boolean isChanged = false;
 

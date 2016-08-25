@@ -26,5 +26,11 @@ public class PreferenceHelper {
         return settings.getBoolean("drive_by_wire", true);
     }
 
+    public static boolean getAutoPauseEnable() {
+        SharedPreferences settings =
+                PreferenceManager.getDefaultSharedPreferences(App.getApp());
+        return settings.getBoolean("auto_pause", true);
+    }
+
 
 }
