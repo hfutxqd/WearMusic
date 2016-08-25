@@ -34,6 +34,8 @@
     <string name="pref_category_music_func">功能设置</string>
     <string name="pref_title_drive_by_wire">线控开关</string>
     <string name="pref_summary_drive_by_wire">单击暂停，双击切换下一曲</string>
+    <string name="pref_title_auto_pause">自动暂停</string>
+    <string name="pref_summary_auto_pause">拔出耳机时自动暂停</string>
     <string name="pref_title_timed_exit">定时关闭</string>
     <string name="action_add_to_watch">添加到手表</string>
     <string name="name_song_list_favorites">我的最爱</string>
@@ -41,8 +43,8 @@
     <string name="pref_category_about">关于信息</string>
     <string name="pref_title_author">作者</string>
     <string name="pref_summary_author">IMXQD</string>
-    <string name="pref_title_appname">软件名称</string>
-    <string name="pref_title_appversion">软件版本</string>
+    <string name="pref_title_app_name">软件名称</string>
+    <string name="pref_title_app_version">软件版本</string>
     <string name="app_version">1.0.0</string>
     <string name="pref_title_email">电子邮件</string>
     <string name="pref_summary_email">ahtlxqd@gmail.com</string>

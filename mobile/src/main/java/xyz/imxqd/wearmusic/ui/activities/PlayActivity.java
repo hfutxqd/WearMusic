@@ -32,6 +32,10 @@ import xyz.imxqd.wearmusic.services.PlayService;
 import xyz.imxqd.wearmusic.utils.App;
 import xyz.imxqd.wearmusic.utils.TimeUtils;
 
+import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PLAY_MODE_REPEAT_LIST;
+import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PLAY_MODE_REPEAT_ONE;
+import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PLAY_MODE_REPEAT_RAND;
+
 public class PlayActivity extends AppCompatActivity implements PlayService.OnSongStateChangedListener, SeekBar.OnSeekBarChangeListener {
 
     private Toolbar mToolbar;
@@ -55,6 +59,7 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
             playBinder = (PlayService.PlayBinder) iBinder;
             mCurrentMusic = playBinder.getCurrentMusicInfo();
             initMusicUi();
+            initModeUi();
             playBinder.setOnSongChangeListener(PlayActivity.this);
 
             mProgressUpdater.schedule(new TimerTask() {
@@ -131,6 +136,20 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
         mCurrentTime = (TextView) findViewById(R.id.play_music_current_time);
         mTotalTime = (TextView) findViewById(R.id.play_music_total_time);
         mPlayRoot = (ViewGroup) findViewById(R.id.play_root);
+    }
+
+    private void initModeUi() {
+        switch (playBinder.getMode()) {
+            case PLAY_MODE_REPEAT_ONE:
+                mModeBtn.setImageResource(R.drawable.play_icn_one_selector);
+                break;
+            case PLAY_MODE_REPEAT_RAND:
+                mModeBtn.setImageResource(R.drawable.play_icn_shuffle_selector);
+                break;
+            case PLAY_MODE_REPEAT_LIST:
+                mModeBtn.setImageResource(R.drawable.play_icn_loop_selector);
+            default:
+        }
     }
 
     private void setupEvents() {
@@ -215,7 +234,9 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
     }
 
     public void onModeClick(View view) {
-
+        int mode = (playBinder.getMode() + 1) % 3;
+        playBinder.setMode(mode);
+        initModeUi();
     }
 
     public void onListClick(View view) {

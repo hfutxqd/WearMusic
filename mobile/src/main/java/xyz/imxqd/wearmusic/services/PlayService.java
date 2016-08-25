@@ -13,18 +13,24 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 import xyz.imxqd.wearmusic.R;
-import xyz.imxqd.wearmusic.ui.activities.PlayActivity;
 import xyz.imxqd.wearmusic.helpers.HeadSetHelper;
 import xyz.imxqd.wearmusic.helpers.MediaScanerHelper;
 import xyz.imxqd.wearmusic.helpers.PreferenceHelper;
 import xyz.imxqd.wearmusic.models.MusicInfo;
+import xyz.imxqd.wearmusic.ui.activities.PlayActivity;
 import xyz.imxqd.wearmusic.utils.Config;
+import xyz.imxqd.wearmusic.utils.Constants;
+import xyz.imxqd.wearmusic.utils.RandomUitl;
 
-import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.*;
+import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PLAY_MODE_REPEAT_LIST;
+import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PLAY_MODE_REPEAT_ONE;
+import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PLAY_MODE_REPEAT_RAND;
+import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PlayModeValue;
 
 public class PlayService extends Service implements MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, MediaPlayer.OnPreparedListener, HeadSetHelper.OnHeadSetListener {
     private static final String TAG = "PlayService";
@@ -33,12 +39,6 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
 
     private static final int REQUEST_CODE_FOREGROUND = 1;
     private static final int REQUEST_CODE_NOTIFY_CTRL = 3;
-
-    public static final String PLAY_ACTION_PLAY = "PlayService.play"; // 播放
-    public static final String PLAY_ACTION_PAUSE= "PlayService.pause"; // 暂停
-    public static final String PLAY_ACTION_NEXT= "PlayService.next"; // 下一曲
-
-
 
     private MediaPlayer player;
     private PlayBinder binder;
@@ -100,13 +100,13 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
             String action = intent.getAction();
             if(action != null) {
                 switch (action) {
-                    case PLAY_ACTION_PAUSE:
+                    case Constants.Action.PLAY_ACTION_PAUSE:
                         binder.pause();
                         break;
-                    case PLAY_ACTION_NEXT:
+                    case Constants.Action.PLAY_ACTION_NEXT:
                         binder.next();
                         break;
-                    case PLAY_ACTION_PLAY:
+                    case Constants.Action.PLAY_ACTION_PLAY:
                         binder.play();
                         break;
                 }
@@ -167,13 +167,16 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
 
         if(!binder.isPlaying()) {
             mRemoteViews.setImageViewResource(R.id.music_play, R.drawable.ic_play_arrow_white_36dp);
-            mRemoteViews.setOnClickPendingIntent(R.id.music_play, getPendingIntent(PLAY_ACTION_PLAY));
+            mRemoteViews.setOnClickPendingIntent(R.id.music_play,
+                    getPendingIntent(Constants.Action.PLAY_ACTION_PLAY));
         } else {
             mRemoteViews.setImageViewResource(R.id.music_play, R.drawable.ic_pause_white_36dp);
-            mRemoteViews.setOnClickPendingIntent(R.id.music_play, getPendingIntent(PLAY_ACTION_PAUSE));
+            mRemoteViews.setOnClickPendingIntent(R.id.music_play,
+                    getPendingIntent(Constants.Action.PLAY_ACTION_PAUSE));
         }
 
-        mRemoteViews.setOnClickPendingIntent(R.id.music_next, getPendingIntent(PLAY_ACTION_NEXT));
+        mRemoteViews.setOnClickPendingIntent(R.id.music_next,
+                getPendingIntent(Constants.Action.PLAY_ACTION_NEXT));
 
         Notification notification = new NotificationCompat.Builder(PlayService.this)
                 .setContent(mRemoteViews)
@@ -231,6 +234,14 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         public void remove(MusicInfo info) {
             mMusicInfoList.remove(info);
             mIdList.remove(info.getSongId());
+        }
+
+        public void setMode(@PlayModeValue int mode) {
+            mCurrentMode = mode;
+        }
+
+        public@PlayModeValue int getMode() {
+            return mCurrentMode;
         }
 
         public void setOnSongChangeListener(OnSongStateChangedListener listener) {
@@ -307,6 +318,17 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         public void next() {
             int pos = mIdList.indexOf(currentId);
             long id = mIdList.get((pos + 1) % mIdList.size());
+            switch (mCurrentMode) {
+                case PLAY_MODE_REPEAT_ONE:
+                    id = mIdList.get(pos);
+                    break;
+                case PLAY_MODE_REPEAT_RAND:
+                    id = mIdList.get(RandomUitl.getInt(mIdList.size()));
+                    break;
+                case PLAY_MODE_REPEAT_LIST:
+                default:
+            }
+
             load(id);
             play();
         }
@@ -317,6 +339,17 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
                 pos = mIdList.size();
             }
             long id = mIdList.get(pos - 1);
+            switch (mCurrentMode) {
+                case PLAY_MODE_REPEAT_ONE:
+                    id = mIdList.get(pos);
+                    break;
+                case PLAY_MODE_REPEAT_RAND:
+                    id = mIdList.get(RandomUitl.getInt(mIdList.size()));
+                    break;
+                case PLAY_MODE_REPEAT_LIST:
+                default:
+            }
+
             load(id);
             play();
         }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="pref_filter_duration_titles">
+    <string-array name="pref_filter_duration_titles" >
+        <item>不过滤</item>
         <item>30秒以下</item>
         <item>1分钟以下</item>
         <item>1分30秒钟以下</item>
@@ -8,9 +9,9 @@
         <item>10分钟以上</item>
         <item>20分钟以上</item>
         <item>30分钟以上</item>
-        <item>不过滤</item>
     </string-array>
-    <string-array name="pref_filter_duration_values">
+    <string-array name="pref_filter_duration_values" >
+        <item>N</item>
         <item>B30</item>
         <item>B60</item>
         <item>B90</item>
@@ -18,7 +19,6 @@
         <item>A600</item>
         <item>A1200</item>
         <item>A1800</item>
-        <item>N</item>
     </string-array>
 
     <string-array name="pref_filter_type_titles">
@@ -36,20 +36,20 @@
         <item>podcast</item>
     </string-array>
     <string-array name="pref_timed_exit_titles" >
+        <item>不关闭</item>
         <item>15分钟过后</item>
         <item>30分钟过后</item>
         <item>1小时30分钟过后</item>
         <item>2小时过后</item>
         <item>3小时过后</item>
-        <item>不关闭</item>
     </string-array>
     <string-array name="pref_timed_exit_values" >
+        <item>0</item>
         <item>15</item>
         <item>30</item>
         <item>90</item>
         <item>120</item>
         <item>180</item>
-        <item>0</item>
     </string-array>
 
     <string-array name="extra_email">

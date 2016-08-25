@@ -13,13 +13,19 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/pref_category_music_func">
+        android:title="@string/pref_category_music_func" >
         <CheckBoxPreference
             android:title="@string/pref_title_drive_by_wire"
             android:defaultValue="true"
             android:key="drive_by_wire"
-            android:summary="@string/pref_summary_drive_by_wire"
-            />
+            android:summary="@string/pref_summary_drive_by_wire" />
+
+        <CheckBoxPreference
+            android:title="@string/pref_title_auto_pause"
+            android:defaultValue="true"
+            android:key="auto_pause"
+            android:summary="@string/pref_summary_auto_pause" />
+
         <ListPreference
             android:defaultValue="0"
             android:entries="@array/pref_timed_exit_titles"
@@ -33,12 +39,12 @@
     <PreferenceCategory
         android:title="@string/pref_category_about">
         <PreferenceScreen
-            android:title="@string/pref_title_appname"
+            android:title="@string/pref_title_app_name"
             android:summary="@string/app_name"
             />
 
         <PreferenceScreen
-            android:title="@string/pref_title_appversion"
+            android:title="@string/pref_title_app_version"
             android:summary="@string/app_version" />
 
         <PreferenceScreen
