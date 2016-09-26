@@ -31,6 +31,7 @@ import xyz.imxqd.wearmusic.models.MusicInfo;
 import xyz.imxqd.wearmusic.services.PlayService;
 import xyz.imxqd.wearmusic.utils.App;
 import xyz.imxqd.wearmusic.utils.TimeUtils;
+import xyz.imxqd.wearmusic.views.LrcView;
 
 import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PLAY_MODE_REPEAT_LIST;
 import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PLAY_MODE_REPEAT_ONE;
@@ -47,6 +48,8 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
     private TextView mCurrentTime;
     private TextView mTotalTime;
     private ViewGroup mPlayRoot;
+
+    private LrcView mLrcView;
 
     private PlayService.PlayBinder playBinder = null;
     private MusicInfo mCurrentMusic;
@@ -136,6 +139,9 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
         mCurrentTime = (TextView) findViewById(R.id.play_music_current_time);
         mTotalTime = (TextView) findViewById(R.id.play_music_total_time);
         mPlayRoot = (ViewGroup) findViewById(R.id.play_root);
+
+        mLrcView = (LrcView) findViewById(R.id.play_music_lrc);
+
     }
 
     private void initModeUi() {

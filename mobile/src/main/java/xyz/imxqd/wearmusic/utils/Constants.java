@@ -61,7 +61,7 @@ public class Constants {
         public static final int PLAY_MODE_REPEAT_RAND          = 1; // 列表随机
         public static final int PLAY_MODE_REPEAT_ONE           = 2; // 单曲循环
 
-        @IntDef({PLAY_MODE_REPEAT_LIST, PLAY_MODE_REPEAT_ONE, PLAY_MODE_REPEAT_ONE})
+        @IntDef({PLAY_MODE_REPEAT_LIST, PLAY_MODE_REPEAT_RAND, PLAY_MODE_REPEAT_ONE})
         @Retention(RetentionPolicy.SOURCE)
         public @interface PlayModeValue {}
 

@@ -17,13 +17,23 @@
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-    <ImageView
-        android:id="@+id/play_music_icon"
-        android:scaleType="centerCrop"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:src="@drawable/music"/>
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/play_music_icon"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/music"/>
+        <xyz.imxqd.wearmusic.views.LrcView
+            android:id="@+id/play_music_lrc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
     <android.support.v7.widget.AppCompatSeekBar
         android:id="@+id/play_music_seek_bar"
         android:layout_width="match_parent"
