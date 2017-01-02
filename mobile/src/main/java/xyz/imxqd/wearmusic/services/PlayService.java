@@ -300,7 +300,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         }
 
         public void play() {
-            if(!player.isPlaying()) {
+            if(!player.isPlaying() && getCurrentMusicInfo() != null) {
                 player.start();
                 NotifyNotification();
                 if (isChanged) {
@@ -329,6 +329,9 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         }
 
         public void next() {
+            if (mIdList.size() == 0) {
+                return;
+            }
             int pos = mIdList.indexOf(currentId);
             long id = mIdList.get((pos + 1) % mIdList.size());
             switch (mCurrentMode) {
@@ -347,8 +350,11 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         }
 
         public void previous() {
+            if (mIdList.size() == 0) {
+                return;
+            }
             int pos = mIdList.indexOf(currentId);
-            if(pos == 0) {
+            if(pos <= 0) {
                 pos = mIdList.size();
             }
             long id = mIdList.get(pos - 1);

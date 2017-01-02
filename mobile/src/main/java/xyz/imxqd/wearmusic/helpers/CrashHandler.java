@@ -41,7 +41,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
                 Environment.MEDIA_MOUNTED)) {
             File dir = Environment.getExternalStorageDirectory();
             try {
-                File log = new File(dir, "wear_music_crash.log");
+                File log = new File(dir, "wear_music_crash_" + System.currentTimeMillis() + ".log");
                 if (!log.exists()) {
                     log.createNewFile();
                 }

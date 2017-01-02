@@ -5,6 +5,6 @@ package xyz.imxqd.wearmusic.utils;
  * 调试配置文件
  */
 public class Config {
-    public static boolean isDebug = true;
+    public static boolean isDebug = false;
 
 }
