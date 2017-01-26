@@ -25,7 +25,7 @@ import xyz.imxqd.wearmusic.models.MusicInfo;
 import xyz.imxqd.wearmusic.ui.activities.PlayActivity;
 import xyz.imxqd.wearmusic.utils.Config;
 import xyz.imxqd.wearmusic.utils.Constants;
-import xyz.imxqd.wearmusic.utils.RandomUitl;
+import xyz.imxqd.wearmusic.utils.RandomUtil;
 
 import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PLAY_MODE_REPEAT_LIST;
 import static xyz.imxqd.wearmusic.utils.Constants.PlayMode.PLAY_MODE_REPEAT_ONE;
@@ -339,7 +339,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
                     id = mIdList.get(pos);
                     break;
                 case PLAY_MODE_REPEAT_RAND:
-                    id = mIdList.get(RandomUitl.getInt(mIdList.size()));
+                    id = mIdList.get(RandomUtil.getInt(mIdList.size()));
                     break;
                 case PLAY_MODE_REPEAT_LIST:
                 default:
@@ -363,7 +363,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
                     id = mIdList.get(pos);
                     break;
                 case PLAY_MODE_REPEAT_RAND:
-                    id = mIdList.get(RandomUitl.getInt(mIdList.size()));
+                    id = mIdList.get(RandomUtil.getInt(mIdList.size()));
                     break;
                 case PLAY_MODE_REPEAT_LIST:
                 default:
