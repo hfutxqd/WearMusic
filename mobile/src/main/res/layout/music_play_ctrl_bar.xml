@@ -26,14 +26,14 @@
         android:layout_height="48dp">
         <TextView
             android:id="@+id/play_bar_music_title"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/play_bar_music_artist"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textSize="12sp"
             android:maxLines="1"
             android:layout_width="match_parent"

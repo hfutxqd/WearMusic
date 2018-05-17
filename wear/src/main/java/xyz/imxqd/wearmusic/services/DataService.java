@@ -6,17 +6,17 @@ import android.os.StatFs;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.data.FreezableUtils;
+import com.google.android.gms.wearable.DataEvent;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.MessageEvent;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.Wearable;
+import com.google.android.gms.wearable.WearableListenerService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.mobvoi.android.common.ConnectionResult;
-import com.mobvoi.android.common.api.MobvoiApiClient;
-import com.mobvoi.android.common.data.FreezableUtils;
-import com.mobvoi.android.wearable.DataEvent;
-import com.mobvoi.android.wearable.DataEventBuffer;
-import com.mobvoi.android.wearable.MessageEvent;
-import com.mobvoi.android.wearable.Node;
-import com.mobvoi.android.wearable.Wearable;
-import com.mobvoi.android.wearable.WearableListenerService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,13 +26,15 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static xyz.imxqd.wearmusic.utils.Constants.WatchCMD.*;
+import static xyz.imxqd.wearmusic.utils.Constants.WatchCMD.GET_FILE_LIST_PATH;
+import static xyz.imxqd.wearmusic.utils.Constants.WatchCMD.GET_SDCARD_PATH;
+import static xyz.imxqd.wearmusic.utils.Constants.WatchCMD.GET_STORAGE_INFO_PATH;
 
 
 public class DataService extends WearableListenerService {
     private static final String TAG = "DataService";
 
-    private MobvoiApiClient mMobvoiApiClient;
+    private GoogleApiClient mGoogleApiClient;
 
 
     public DataService() {
@@ -41,10 +43,10 @@ public class DataService extends WearableListenerService {
     @Override
     public void onCreate() {
         super.onCreate();
-        mMobvoiApiClient = new MobvoiApiClient.Builder(this)
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Wearable.API)
                 .build();
-        mMobvoiApiClient.connect();
+        mGoogleApiClient.connect();
     }
 
     @Override
@@ -52,8 +54,8 @@ public class DataService extends WearableListenerService {
         LOGD(TAG, "onDataChanged: " + dataEvents);
         final List<DataEvent> events = FreezableUtils.freezeIterable(dataEvents);
         dataEvents.close();
-        if(!mMobvoiApiClient.isConnected()) {
-            ConnectionResult connectionResult = mMobvoiApiClient
+        if(!mGoogleApiClient.isConnected()) {
+            ConnectionResult connectionResult = mGoogleApiClient
                     .blockingConnect(30, TimeUnit.SECONDS);
             if (!connectionResult.isSuccess()) {
                 return;
@@ -78,7 +80,7 @@ public class DataService extends WearableListenerService {
             object.addProperty("Total", sf.getTotalBytes());
             String json = object.toString();
             byte[] data = json.getBytes(Charset.forName("UTF-8"));
-            Wearable.MessageApi.sendMessage(mMobvoiApiClient, null, GET_STORAGE_INFO_PATH, data);
+            Wearable.MessageApi.sendMessage(mGoogleApiClient, null, GET_STORAGE_INFO_PATH, data);
         } else if (GET_FILE_LIST_PATH.equals(messageEvent.getPath())) {
             String json = new String(messageEvent.getData(), Charset.forName("UTF-8"));
             Toast.makeText(this, json, Toast.LENGTH_LONG).show();
@@ -95,7 +97,7 @@ public class DataService extends WearableListenerService {
                 ob.addProperty("filesJson", res);
                 byte[] data = ob.toString().getBytes(Charset.forName("UTF-8"));
                 Toast.makeText(this, "sending file list...", Toast.LENGTH_LONG).show();
-                Wearable.MessageApi.sendMessage(mMobvoiApiClient, null, GET_FILE_LIST_PATH, data);
+                Wearable.MessageApi.sendMessage(mGoogleApiClient, null, GET_FILE_LIST_PATH, data);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -105,7 +107,7 @@ public class DataService extends WearableListenerService {
             object.addProperty("path", path);
             String json = object.toString();
             byte[] data = json.getBytes(Charset.forName("UTF-8"));
-            Wearable.MessageApi.sendMessage(mMobvoiApiClient, null, GET_SDCARD_PATH, data);
+            Wearable.MessageApi.sendMessage(mGoogleApiClient, null, GET_SDCARD_PATH, data);
         }
     }
 

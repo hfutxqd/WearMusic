@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/music_title"
-        android:textColor="@color/black"
+        android:textColor="#000000"
         app:layout_box="all"/>
     <RelativeLayout
         android:id="@+id/display_on"
@@ -69,14 +69,14 @@
         app:layout_box="all">
         <TextView
             android:id="@+id/current_system_time"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textSize="36sp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/current_system_steps"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

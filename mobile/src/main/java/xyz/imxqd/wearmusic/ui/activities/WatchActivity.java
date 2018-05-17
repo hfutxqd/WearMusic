@@ -12,20 +12,21 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.dinuscxj.progressbar.CircleProgressBar;
+import com.google.android.gms.common.api.Status;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.mobvoi.android.common.ConnectionResult;
-import com.mobvoi.android.common.api.MobvoiApiClient;
-import com.mobvoi.android.common.data.FreezableUtils;
-import com.mobvoi.android.wearable.DataApi;
-import com.mobvoi.android.wearable.DataEvent;
-import com.mobvoi.android.wearable.DataEventBuffer;
-import com.mobvoi.android.wearable.MessageApi;
-import com.mobvoi.android.wearable.MessageEvent;
-import com.mobvoi.android.wearable.Node;
-import com.mobvoi.android.wearable.NodeApi;
-import com.mobvoi.android.wearable.Wearable;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.data.FreezableUtils;
+import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.DataEvent;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.MessageApi;
+import com.google.android.gms.wearable.MessageEvent;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.NodeApi;
+import com.google.android.gms.wearable.Wearable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,13 +41,13 @@ import xyz.imxqd.wearmusic.utils.StorageUtils;
 
 import static xyz.imxqd.wearmusic.utils.Constants.WatchCMD.*;
 
-public class WatchActivity extends AppCompatActivity implements MobvoiApiClient.ConnectionCallbacks,
-        MobvoiApiClient.OnConnectionFailedListener, DataApi.DataListener,
-        MessageApi.MessageListener, NodeApi.NodeListener {
+public class WatchActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener, DataApi.DataListener,
+        MessageApi.MessageListener, NodeApi.GetConnectedNodesResult {
 
     private static final String TAG = "WatchActivity";
 
-    private MobvoiApiClient mMobvoiApiClient;
+    private GoogleApiClient mGoogleApiClient;
     private boolean mResolvingError = false;
     private static final int REQUEST_RESOLVE_ERROR = 1000;
 
@@ -71,7 +72,7 @@ public class WatchActivity extends AppCompatActivity implements MobvoiApiClient.
     }
 
     private void initWearApi() {
-        mMobvoiApiClient = new MobvoiApiClient.Builder(this)
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Wearable.API)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -108,17 +109,17 @@ public class WatchActivity extends AppCompatActivity implements MobvoiApiClient.
     protected void onResume() {
         super.onResume();
         if (!mResolvingError) {
-            mMobvoiApiClient.connect();
+            mGoogleApiClient.connect();
         }
     }
 
     @Override
     protected void onPause() {
         if (!mResolvingError) {
-            Wearable.DataApi.removeListener(mMobvoiApiClient, this);
-            Wearable.MessageApi.removeListener(mMobvoiApiClient, this);
-            Wearable.NodeApi.removeListener(mMobvoiApiClient, this);
-            mMobvoiApiClient.disconnect();
+            Wearable.DataApi.removeListener(mGoogleApiClient, this);
+            Wearable.MessageApi.removeListener(mGoogleApiClient, this);
+//            Wearable.NodeApi.removeListener(mGoogleApiClient, this);
+            mGoogleApiClient.disconnect();
         }
         super.onPause();
     }
@@ -131,13 +132,13 @@ public class WatchActivity extends AppCompatActivity implements MobvoiApiClient.
 
     @Override
     public void onConnected(Bundle bundle) {
-        Wearable.DataApi.addListener(mMobvoiApiClient, this);
-        Wearable.MessageApi.addListener(mMobvoiApiClient, this);
-        Wearable.NodeApi.addListener(mMobvoiApiClient, this);
+        Wearable.DataApi.addListener(mGoogleApiClient, this);
+        Wearable.MessageApi.addListener(mGoogleApiClient, this);
+//        Wearable.NodeApi.addListener(mGoogleApiClient, this);
 
-        Wearable.MessageApi.sendMessage(mMobvoiApiClient, null, GET_STORAGE_INFO_PATH, null);
+        Wearable.MessageApi.sendMessage(mGoogleApiClient, null, GET_STORAGE_INFO_PATH, null);
 
-        Wearable.MessageApi.sendMessage(mMobvoiApiClient, null, GET_SDCARD_PATH, null);
+        Wearable.MessageApi.sendMessage(mGoogleApiClient, null, GET_SDCARD_PATH, null);
     }
 
     @Override
@@ -155,13 +156,13 @@ public class WatchActivity extends AppCompatActivity implements MobvoiApiClient.
                 result.startResolutionForResult(this, REQUEST_RESOLVE_ERROR);
             } catch (IntentSender.SendIntentException e) {
                 // There was an error with the resolution intent. Try again.
-                mMobvoiApiClient.connect();
+                mGoogleApiClient.connect();
             }
         } else {
             mResolvingError = false;
-            Wearable.DataApi.removeListener(mMobvoiApiClient, this);
-            Wearable.MessageApi.removeListener(mMobvoiApiClient, this);
-            Wearable.NodeApi.removeListener(mMobvoiApiClient, this);
+            Wearable.DataApi.removeListener(mGoogleApiClient, this);
+            Wearable.MessageApi.removeListener(mGoogleApiClient, this);
+            Wearable.NodeApi.removeListener(mGoogleApiClient, this);
         }
     }
 
@@ -182,7 +183,7 @@ public class WatchActivity extends AppCompatActivity implements MobvoiApiClient.
                 JSONObject ob = new JSONObject(json);
                 mSdcardPath = ob.getString("path");
                 Log.d(TAG, "sdcard path: " + mSdcardPath);
-                Wearable.MessageApi.sendMessage(mMobvoiApiClient, null,
+                Wearable.MessageApi.sendMessage(mGoogleApiClient, null,
                         GET_FILE_LIST_PATH, ob.toString().getBytes(Charset.forName("UTF-8")));
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -201,15 +202,15 @@ public class WatchActivity extends AppCompatActivity implements MobvoiApiClient.
         }
     }
 
-    @Override
-    public void onPeerConnected(Node node) {
-        mTvWatchStorage.setText(R.string.watch_connected);
-    }
-
-    @Override
-    public void onPeerDisconnected(Node node) {
-        mTvWatchStorage.setText(R.string.watch_not_connected);
-    }
+//    @Override
+//    public void onPeerConnected(Node node) {
+//        mTvWatchStorage.setText(R.string.watch_connected);
+//    }
+//
+//    @Override
+//    public void onPeerDisconnected(Node node) {
+//        mTvWatchStorage.setText(R.string.watch_not_connected);
+//    }
 
     private void onReceivedStorageInfo(String json) {
         Log.d(TAG, json);
@@ -233,5 +234,15 @@ public class WatchActivity extends AppCompatActivity implements MobvoiApiClient.
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Node> getNodes() {
+        return null;
+    }
+
+    @Override
+    public Status getStatus() {
+        return null;
     }
 }
