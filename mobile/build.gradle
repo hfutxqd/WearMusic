@@ -28,11 +28,11 @@ repositories {
 
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     wearApp project(':wear')
+    implementation 'com.dinuscxj:circleprogressbar:1.1.0'
     implementation 'com.google.android.gms:play-services-wearable:15.0.1'
     implementation 'com.github.bumptech.glide:glide:3.8.0'
-    implementation 'com.dinuscxj:circleprogressbar:1.1.1'
     implementation 'com.hwangjr.rxbus:rxbus:1.0.6'
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.github.satyan:sugar:1.5'

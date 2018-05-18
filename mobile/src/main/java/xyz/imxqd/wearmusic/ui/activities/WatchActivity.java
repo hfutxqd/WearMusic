@@ -162,7 +162,7 @@ public class WatchActivity extends AppCompatActivity implements GoogleApiClient.
             mResolvingError = false;
             Wearable.DataApi.removeListener(mGoogleApiClient, this);
             Wearable.MessageApi.removeListener(mGoogleApiClient, this);
-            Wearable.NodeApi.removeListener(mGoogleApiClient, this);
+//            Wearable.NodeApi.removeListener(mGoogleApiClient, this);
         }
     }
 

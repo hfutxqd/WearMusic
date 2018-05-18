@@ -55,7 +55,7 @@ public class ListActivity extends WearableActivity implements ListAdapter.OnItem
         mAdapter = new ListAdapter(this);
         mListView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
-        sendBroadcast(new Intent(MEDIA_SCANNER_SCAN_DIR, Uri.fromFile(StorageUtils.getPublicMusicDirectory())));
+        sendBroadcast(new Intent(MEDIA_SCANNER_SCAN_DIR));
         initService();
     }
 

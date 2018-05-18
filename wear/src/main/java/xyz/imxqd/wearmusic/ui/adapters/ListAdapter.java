@@ -1,10 +1,14 @@
 package xyz.imxqd.wearmusic.ui.adapters;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.support.wearable.view.WearableListView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,11 +29,11 @@ import xyz.imxqd.wearmusic.utils.TimeUtils;
  * 音乐列表的适配器
  */
 public class ListAdapter extends WearableListView.Adapter {
-    private Context mContext;
+    private Activity mContext;
     private ArrayList<MusicInfo> mList;
     private OnItemClickListener mListener = null;
 
-    public ListAdapter(Context context) {
+    public ListAdapter(Activity context) {
         super();
         mContext = context;
         mList = new ArrayList<>();
@@ -37,6 +41,12 @@ public class ListAdapter extends WearableListView.Adapter {
     }
 
     public void updateData() {
+        if (PermissionChecker.checkSelfPermission(mContext, Manifest.permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(mContext, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+            return;
+        } else if (PermissionChecker.checkSelfPermission(mContext, Manifest.permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_DENIED_APP_OP) {
+            return;
+        }
         ContentResolver cr = mContext.getContentResolver();
         Cursor cursor = cr.query(
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,
