@@ -118,7 +118,6 @@ public class WatchActivity extends AppCompatActivity implements GoogleApiClient.
         if (!mResolvingError) {
             Wearable.DataApi.removeListener(mGoogleApiClient, this);
             Wearable.MessageApi.removeListener(mGoogleApiClient, this);
-//            Wearable.NodeApi.removeListener(mGoogleApiClient, this);
             mGoogleApiClient.disconnect();
         }
         super.onPause();
@@ -134,7 +133,6 @@ public class WatchActivity extends AppCompatActivity implements GoogleApiClient.
     public void onConnected(Bundle bundle) {
         Wearable.DataApi.addListener(mGoogleApiClient, this);
         Wearable.MessageApi.addListener(mGoogleApiClient, this);
-//        Wearable.NodeApi.addListener(mGoogleApiClient, this);
 
         Wearable.MessageApi.sendMessage(mGoogleApiClient, null, GET_STORAGE_INFO_PATH, null);
 
@@ -201,16 +199,6 @@ public class WatchActivity extends AppCompatActivity implements GoogleApiClient.
             mFilesMap.put(path, files);
         }
     }
-
-//    @Override
-//    public void onPeerConnected(Node node) {
-//        mTvWatchStorage.setText(R.string.watch_connected);
-//    }
-//
-//    @Override
-//    public void onPeerDisconnected(Node node) {
-//        mTvWatchStorage.setText(R.string.watch_not_connected);
-//    }
 
     private void onReceivedStorageInfo(String json) {
         Log.d(TAG, json);

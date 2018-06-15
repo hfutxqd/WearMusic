@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, WatchActivity.class);
+                Intent intent = new Intent(MainActivity.this, Watch2Activity.class);
                 startActivity(intent);
             }
         });

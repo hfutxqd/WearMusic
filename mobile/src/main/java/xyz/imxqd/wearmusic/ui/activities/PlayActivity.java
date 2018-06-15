@@ -115,12 +115,10 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
     }
 
     private void initSysUi() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getWindow();
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+        Window window = getWindow();
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -163,6 +161,9 @@ public class PlayActivity extends AppCompatActivity implements PlayService.OnSon
     }
 
     private void initMusicUi() {
+        if (mCurrentMusic == null) {
+            return;
+        }
         Bitmap bitmap = mCurrentMusic.getAlbumIcon();
         if (bitmap != null) {
             Palette palette = new Palette.Builder(bitmap)

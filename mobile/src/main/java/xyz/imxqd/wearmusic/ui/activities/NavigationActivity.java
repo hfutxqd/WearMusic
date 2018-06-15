@@ -267,7 +267,7 @@ public class NavigationActivity extends AppCompatActivity
             }
             break;
             case R.id.nav_watch: {
-                Intent intent = new Intent(this, WatchActivity.class);
+                Intent intent = new Intent(this, Watch2Activity.class);
                 startActivity(intent);
             }
             break;
